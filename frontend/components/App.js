@@ -41,6 +41,9 @@ export default function App() {
     setMembers(members.concat({ ...formValues, id: getId()}))
     setFormValues(initialFormValues)
   }
+  const deleteMember = id => {
+    setMembers(members.filter(m => m.id !== id))
+  }
   const editExistingMember = () => {
     setMembers(members.map(m => m.id === editing ? { ...formValues, id: editing } : m))
     setEditing(null);
@@ -63,6 +66,7 @@ export default function App() {
                   <p>{mem.bio}</p>
                 </div>
                 <button onClick={() => edit(mem.id)}>Edit</button>
+                <button onClick={() => deleteMember(mem.id)}>Delete</button>
               </div>
             ))
           }
